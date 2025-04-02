@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Favoritos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mis Favoritos</h1>
+        <div class="header-actions">
+            <button id="addNewBtn" class="btn-primary">
+                <i class="fas fa-plus"></i> Nuevo
+            </button>
+            <button id="importBtn" class="btn-secondary">
+                <i class="fas fa-file-import"></i> Importar
+            </button>
+            <button id="addCategoryBtn" class="btn-secondary">
+                <i class="fas fa-folder-plus"></i> Nueva Categoría
+            </button>
+            <button id="themeToggle" class="btn-icon" title="Cambiar tema">
+                <i class="fas fa-moon"></i>
+                <span>Cambiar a modo oscuro</span>
+            </button>
+            <button id="openSettings" class="btn-icon" title="Configuración">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <aside class="categories-sidebar">
+            <ul id="categories-list" class="categories-list">
+                <!-- Las categorías se cargarán dinámicamente -->
+            </ul>
+        </aside>
+
+        <section class="favorites-section">
+            <div id="favorites-grid" class="favorites-grid">
+                <!-- Los favoritos se cargarán dinámicamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para agregar/editar favorito -->
+    <div id="addFavoriteModal" class="modal">
+        <div class="modal-content">
+            <h2>Agregar Favorito</h2>
+            <form id="addFavoriteForm">
+                <div class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input type="url" id="url" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select id="category" required>
+                        <!-- Las categorías se cargarán dinámicamente -->
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelAddBtn" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para agregar categoría -->
+    <div id="addCategoryModal" class="modal">
+        <div class="modal-content">
+            <h2>Nueva Categoría</h2>
+            <form id="addCategoryForm">
+                <div class="form-group">
+                    <label for="categoryName">Nombre de la Categoría</label>
+                    <input type="text" id="categoryName" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelCategoryBtn" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar categoría -->
+    <div id="editCategoryModal" class="modal">
+        <div class="modal-content">
+            <h2>Editar Categoría</h2>
+            <form id="editCategoryForm">
+                <div class="form-group">
+                    <label for="editCategoryName">Nombre de la Categoría</label>
+                    <input type="text" id="editCategoryName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCategoryIcon">Icono</label>
+                    <select id="editCategoryIcon">
+                        <option value="fa-folder">Carpeta</option>
+                        <option value="fa-star">Estrella</option>
+                        <option value="fa-heart">Corazón</option>
+                        <option value="fa-bookmark">Marcador</option>
+                        <option value="fa-tag">Etiqueta</option>
+                        <option value="fa-book">Libro</option>
+                        <option value="fa-film">Película</option>
+                        <option value="fa-music">Música</option>
+                        <option value="fa-image">Imagen</option>
+                        <option value="fa-code">Código</option>
+                        <option value="fa-shopping-cart">Compras</option>
+                        <option value="fa-gamepad">Juegos</option>
+                        <option value="fa-newspaper">Noticias</option>
+                        <option value="fa-graduation-cap">Educación</option>
+                        <option value="fa-plane">Viajes</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelEditCategoryBtn" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panel de configuración -->
+    <div class="settings-panel">
+        <div class="settings-header">
+            <h2>Configuración</h2>
+            <button id="closeSettings" class="btn-icon">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-group">
+                <h3>Colores Personalizados</h3>
+                <div class="color-setting">
+                    <label for="textColorPicker">Color del Texto</label>
+                    <div class="color-input-group">
+                        <input type="color" id="textColorPicker">
+                        <button id="resetTextColor" class="btn-icon" title="Restaurar color por defecto">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="color-setting">
+                    <label for="backgroundColorPicker">Color de Fondo</label>
+                    <div class="color-input-group">
+                        <input type="color" id="backgroundColorPicker">
+                        <button id="resetBackgroundColor" class="btn-icon" title="Restaurar color por defecto">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
